@@ -43,9 +43,11 @@
 
 			$this.data('multiple', bMultiple);
 
-			// If we're in multple select mode
+			// If we're in multiple select mode
 			if(bMultiple)
 			{
+				// If there's no old data, create a hidden select to store the
+				//	current value in and then place it after the current element
 				if(!$this.data('select'))
 				{
 					var oSelect	= $('<select name="' + sName + '" multiple="multiple" style="display: none;"></select>');
@@ -61,7 +63,7 @@
 			else
 			{
 				// If there's no old data, create a hidden input to store the
-				//	current value in and append it to the current element
+				//	current value in and then place it after the current element
 				if(!$this.data('input'))
 				{
 					var oInput	= $('<input type="hidden" name="' + sName + '" value="' + iValue + '" />');
@@ -84,7 +86,7 @@
 			aChildren.each(function() {
 				var oEl	= $(this);
 
-				// If we're in multple select mode
+				// If we're in multiple select mode
 				if(bMultiple)
 				{
 					// Is the element selected?
@@ -131,7 +133,7 @@
 					$this.data('select').show();
 
 					// Get the option corresponding to the value clicked and
-					//	flip it's selected state
+					//	flip its selected state
 					var opt	= $this.data('select').find('option[value="' + el.attr('value') + '"]');
 					var newValue	= !opt.prop('selected');
 					opt.prop('selected', newValue);
@@ -165,7 +167,7 @@
 					// Pull the currently selected element
 					var currSel	= $this.data('last');
 
-					// If it exists, hide it
+					// If it exists, deselect it
 					if(currSel) {
 						currSel.removeAttr('selected');
 						currSel.removeClass(aOptions.selectedClass);
